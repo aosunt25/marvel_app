@@ -1,10 +1,12 @@
 package edu.itesm.marvel_app
 
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
 
 import edu.itesm.marvel_app.dummy.DummyContent.DummyItem
 
@@ -13,19 +15,25 @@ import edu.itesm.marvel_app.dummy.DummyContent.DummyItem
  * TODO: Replace the implementation with code for your data type.
  */
 class MyComicListRecyclerViewAdapter(
-    private val values: List<DummyItem>
+    private val values: ArrayList<Comic>
 ) : RecyclerView.Adapter<MyComicListRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_comic_item, parent, false)
+
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        holder.idView.text = item.id
-        holder.contentView.text = item.content
+        holder.idView.text = item.title
+        holder.itemView.setOnClickListener {
+            val action = ComicListFragmentDirections.actionComicListFragment3ToComicInfoFragment2(item)
+            holder?.itemView.findNavController().navigate(action)
+
+        }
+
     }
 
     override fun getItemCount(): Int = values.size
