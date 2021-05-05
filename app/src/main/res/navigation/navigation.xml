@@ -3,7 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/startFragment2">
+    app:startDestination="@id/loginFragment2">
+    <fragment
+        android:id="@+id/loginFragment2"
+        android:name="edu.itesm.marvel_app.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment2_to_startFragment2"
+            app:destination="@id/startFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/startFragment2"
         android:name="edu.itesm.marvel_app.StartFragment"
@@ -31,4 +39,5 @@
             android:name="comic"
             app:argType="edu.itesm.marvel_app.Comic" />
     </fragment>
+
 </navigation>
