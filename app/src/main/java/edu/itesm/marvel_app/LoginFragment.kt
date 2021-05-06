@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -74,7 +75,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     if(it.isSuccessful){
                         Toast.makeText(getActivity(),"Bienvenido Maestro Pokemon!",
                             Toast.LENGTH_LONG).show()
-
+                            view?.findNavController()?.navigate(R.id.action_loginFragment2_to_startFragment2)
 
                     }else{
                         Toast.makeText(getActivity(),"Error en los datos!",
@@ -92,7 +93,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private fun usuarioCreado(){
         val builder = AlertDialog.Builder(requireActivity())
         with(builder){
-            setTitle("usuario pokedex")
+            setTitle("usuario marvel")
             setMessage("Usuario creado con éxito!")
             setPositiveButton("Ok",null)
             show()

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "271060025730",
+    "project_id": "comic-marvel-examen",
+    "storage_bucket": "comic-marvel-examen.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:271060025730:android:9ccae9f8e5553462608f9b",
+        "android_client_info": {
+          "package_name": "edu.itesm.marvel_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "271060025730-1q6nooofoopee6ni79h22oe3rddqqljc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1z3jam_ZvizO9JwIt4b10XdInlOZxqDA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "271060025730-1q6nooofoopee6ni79h22oe3rddqqljc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
