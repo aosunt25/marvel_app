@@ -30,7 +30,7 @@ class ComicInfoFragment : Fragment() {
     // Incluye las variables de Analytics:
     private lateinit var analytics: FirebaseAnalytics
     private lateinit var bundle: Bundle
-
+    var url = ""
     private val args by navArgs<ComicInfoFragmentArgs>()
 
 
@@ -55,8 +55,9 @@ class ComicInfoFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val imagen = args.comic.imageUrl.toString()+"/portrait_incredible.jpg"
-        Glide.with(view?.context).load(imagen).into(imageView);
+        url = args.comic.imageUrl.toString()+"/portrait_incredible.jpg"
+
+        Glide.with(view?.context).load(url).into(imageView);
 
         //imageView.setImageResource(R.drawable.logomarvel)
 
@@ -94,7 +95,7 @@ class ComicInfoFragment : Fragment() {
             val comic = Comic(
                 title.toString(),
                 description.toString(),
-                imageView.toString(),
+                url,
             )
             reference.child(id!!).setValue(comic)
             toast.show()

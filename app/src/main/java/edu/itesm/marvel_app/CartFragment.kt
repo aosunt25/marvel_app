@@ -1,6 +1,7 @@
 package edu.itesm.marvel_app
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -53,8 +54,14 @@ class CartFragment : Fragment() {
                     override fun onDataChange(snapshot: DataSnapshot) {
 
                         for (comic in snapshot.children) {
-                            var objeto = comic.getValue(Comic::class.java)
-                            listaComics.add(objeto as Comic)
+                            var title = comic.child("title").value.toString()
+
+                            var description = comic.child("description").value.toString()
+                            var path = comic.child("path").value.toString()
+
+                            val newComic = Comic(title, description, path)
+                            Log.i("value", newComic.toString())
+                            listaComics.add(newComic)
                         }
 
                         layoutManager = LinearLayoutManager(activity)
