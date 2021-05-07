@@ -1,7 +1,6 @@
 package edu.itesm.marvel_app
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,30 +12,26 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_comic_info.*
-import kotlinx.android.synthetic.main.fragment_start.*
-import java.io.IOException
-import java.io.InputStream
-import java.net.HttpURLConnection
-import java.net.URL
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ComicInfoFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+//
 class ComicInfoFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+
+    private lateinit var database: FirebaseDatabase
+    private lateinit var reference: DatabaseReference
+    // Incluye las variables de Analytics:
+    private lateinit var analytics: FirebaseAnalytics
+    private lateinit var bundle: Bundle
+
     private val args by navArgs<ComicInfoFragmentArgs>()
-    private lateinit var database: DatabaseReference
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,27 +41,31 @@ class ComicInfoFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ):  View? {
+        database = FirebaseDatabase.getInstance()
+        reference = database.getReference("comicss")
 
-        // Inflate the layout for this fragment
+        //inicializa las variables:
+        analytics = FirebaseAnalytics.getInstance(context)
+        bundle = Bundle()
+        // Para Binding con elementos del Layout
         return inflater.inflate(R.layout.fragment_comic_info, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        //val image = view?.findViewById<ImageView>(R.id.imageView)
-
-        Glide.with(view?.context).load("http://i.annihil.us/u/prod/marvel/i/mg/c/80/4bc5fe7a308d7/portrait_incredible.jpg").into(imageView);
+        val imagen = args.comic.imageUrl.toString()+"/portrait_incredible.jpg"
+        Glide.with(view?.context).load(imagen).into(imageView);
 
         //imageView.setImageResource(R.drawable.logomarvel)
+
         Log.i("Image", args.comic.imageUrl.toString()+"/portrait_incredible.jpg")
         titulo.text = args.comic.title
         descripcion.text = args.comic.description
-        //imageView = getBitmapFromURL(args.comic.imageUrl.toString()+"/portrait_incredible.jpg")
 
 
         agregarCarrito.setOnClickListener{
-          agregarCarrito()
+            agregarCarrito()
         }
 
     }
@@ -74,16 +73,27 @@ class ComicInfoFragment : Fragment() {
     fun agregarCarrito(){
         val text = "Se agrego al carrito"
         val duration = Toast.LENGTH_SHORT
-
         val toast = Toast.makeText(context, text, duration)
-        toast.show()
 
-        //val database = Firebase.database
-        //val myRef = database.getReference("message")
+        val title = titulo.text
+        val description = descripcion.text
 
-       // myRef.setValue("Hello, World!")
-
+        if(title.isNotEmpty() && description.isNotBlank()) {
+            val usuario = Firebase.auth.currentUser
+            reference = database.getReference("comicss/${usuario.uid}")
+            val id = reference.push().key
+            val comic = Comic(
+                title.toString(),
+                description.toString(),
+                imageView.toString(),
+            )
+            reference.child(id!!).setValue(comic)
+            toast.show()
+        }
+        bundle.putString("edu_itesm_marvel_app", "added_comic")
+        analytics.logEvent("main", bundle)
 
     }
 
 }
+
