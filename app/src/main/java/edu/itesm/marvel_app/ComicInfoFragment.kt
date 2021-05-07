@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_comic_info.*
+import kotlinx.android.synthetic.main.fragment_start.*
 
 
 //
@@ -68,7 +69,15 @@ class ComicInfoFragment : Fragment() {
             agregarCarrito()
         }
 
+        // Boton para ver carrito
+        carrito.setOnClickListener{
+            view?.findNavController()?.navigate(R.id.cartFragment)
+
+        }
+
     }
+
+
 
     fun agregarCarrito(){
         val text = "Se agrego al carrito"

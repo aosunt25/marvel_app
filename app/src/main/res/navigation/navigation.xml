@@ -38,6 +38,14 @@
         <argument
             android:name="comic"
             app:argType="edu.itesm.marvel_app.Comic" />
+        <action
+            android:id="@+id/action_comicInfoFragment2_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="edu.itesm.marvel_app.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
 
 </navigation>

@@ -8,54 +8,64 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import edu.itesm.marvel_app.dummy.DummyContent
+import android.widget.Toast
+import androidx.navigation.fragment.navArgs
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
+import edu.itesm.marvel_app.databinding.ActivityMainBinding
+import edu.itesm.marvel_app.databinding.FragmentCartBinding
+import kotlinx.android.synthetic.main.fragment_cart.*
+import kotlinx.android.synthetic.main.fragment_comic_list.*
 
-/**
- * A fragment representing a list of Items.
- */
+
 class CartFragment : Fragment() {
 
-    private var columnCount = 1
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        arguments?.let {
-            columnCount = it.getInt(ARG_COLUMN_COUNT)
-        }
-    }
+    private lateinit var bind: FragmentCartBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_cart_list, container, false)
-
-        // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                adapter = MyCartRecyclerViewAdapter(DummyContent.ITEMS)
-            }
-        }
-        return view
+        // Para Binding con elementos del Layout
+        bind = FragmentCartBinding.inflate(layoutInflater, container, false)
+        return bind.root
+        // Para Binding con elementos del Layout
+        //return bind.root
     }
 
-    companion object {
 
-        // TODO: Customize parameter argument names
-        const val ARG_COLUMN_COUNT = "column-count"
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        cargaDatos()
+    }
 
-        // TODO: Customize parameter initialization
-        @JvmStatic
-        fun newInstance(columnCount: Int) =
-            CartFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_COLUMN_COUNT, columnCount)
-                }
+    fun cargaDatos() {
+        var listaComics = ArrayList<Comic>()
+        var reference: DatabaseReference
+        var database: FirebaseDatabase = FirebaseDatabase.getInstance()
+        val usuario = Firebase.auth.currentUser
+        reference = database.getReference("comicss/${usuario.uid}")
+        activity?.let {
+            bind.list.apply {
+                reference.addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+
+                        for (comic in snapshot.children) {
+                            var objeto = comic.getValue(Comic::class.java)
+                            listaComics.add(objeto as Comic)
+                        }
+
+                        layoutManager = LinearLayoutManager(activity)
+                        adapter = CartFragmentAdapter(listaComics)
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        //Toast.makeText(this@CartFragment,"Error al obtener datos",Toast.LENGTH_LONG).show()
+                    }
+                })
             }
+        }
     }
 }

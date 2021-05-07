@@ -14,7 +14,6 @@ import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.fragment_comic_list.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
 import org.json.JSONException
 import java.math.BigInteger
 import java.security.MessageDigest
@@ -49,7 +48,7 @@ class ComicListFragment : Fragment() {
     }
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
-        list.apply {
+        recycler.apply {
             // set a LinearLayoutManager to handle Android
             // RecyclerView behavior
             layoutManager = LinearLayoutManager(activity)
@@ -108,7 +107,7 @@ class ComicListFragment : Fragment() {
                              comicList.add(newComic)
                              //Log.i("name", comicList.toString())
                          }
-                         list.apply {
+                         recycler.apply {
                             adapter?.notifyDataSetChanged();
                          }
                          //Log.i("comic", comicList.toString())
