@@ -4,31 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/lockscreen"
     tools:context=".StartFragment">
 
-    <Button
+
+    <android.widget.Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#B82D42"
-        android:backgroundTint="#D51616"
+        android:layout_width="105dp"
+        android:layout_height="97dp"
+        android:background="@drawable/custom_button_round"
         android:text="Comics"
-        android:textColor="#DCCECE"
+        android:textColor="#00ffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.737" />
+        app:layout_constraintVertical_bias="0.219" />
 
-    <Button
-        android:id="@+id/carrito"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ver Carrito"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

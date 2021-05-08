@@ -69,8 +69,10 @@ class ComicInfoFragment : Fragment() {
         agregarCarrito.setOnClickListener{
             agregarCarrito()
         }
-
-
+        // Boton para ver carrito
+        carrito.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.cartFragment)
+        }
 
     }
 

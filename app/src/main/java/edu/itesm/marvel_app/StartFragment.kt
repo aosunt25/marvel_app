@@ -32,11 +32,9 @@ class StartFragment : Fragment() {
         button.setOnClickListener{
             view?.findNavController()?.navigate(R.id.action_startFragment2_to_comicListFragment3)
 
-            // Boton para ver carrito
-            carrito.setOnClickListener{
-                view?.findNavController()?.navigate(R.id.cartFragment)
 
-            }
+
+
         }
 
     }

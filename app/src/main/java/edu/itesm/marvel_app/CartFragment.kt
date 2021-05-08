@@ -55,7 +55,7 @@ class CartFragment : Fragment() {
             bind.list.apply {
                 reference.addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
-
+                    
                         for (comic in snapshot.children) {
                             var title = comic.child("title").value.toString()
 
