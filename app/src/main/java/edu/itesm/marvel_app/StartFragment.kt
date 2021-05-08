@@ -34,7 +34,7 @@ class StartFragment : Fragment() {
 
             // Boton para ver carrito
             carrito.setOnClickListener{
-                view?.findNavController()?.navigate(R.id.action_startFragment2_to_cartFragment)
+                view?.findNavController()?.navigate(R.id.cartFragment)
 
             }
         }
