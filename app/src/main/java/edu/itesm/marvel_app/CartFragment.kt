@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
@@ -24,6 +25,8 @@ import kotlinx.android.synthetic.main.fragment_comic_list.*
 class CartFragment : Fragment() {
 
     private lateinit var bind: FragmentCartBinding
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,11 +60,13 @@ class CartFragment : Fragment() {
                             var title = comic.child("title").value.toString()
 
                             var description = comic.child("description").value.toString()
-                            var path = comic.child("path").value.toString()
+                            var imageUrl = comic.child("imageUrl").value.toString()
 
-                            val newComic = Comic(title, description, path)
+                            val newComic =
+                                Comic(title, description, "$imageUrl")
                             Log.i("value", newComic.toString())
                             listaComics.add(newComic)
+
                         }
 
                         layoutManager = LinearLayoutManager(activity)

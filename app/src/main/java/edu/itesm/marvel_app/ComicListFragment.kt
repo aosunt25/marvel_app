@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import kotlinx.android.synthetic.main.fragment_comic_info.*
 import kotlinx.android.synthetic.main.fragment_comic_list.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -55,6 +57,8 @@ class ComicListFragment : Fragment() {
             // set the custom adapter to the RecyclerView
             adapter = MyComicListRecyclerViewAdapter(comicList)
         }
+
+
 
     }
 

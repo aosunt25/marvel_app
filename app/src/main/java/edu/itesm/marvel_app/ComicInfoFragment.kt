@@ -55,7 +55,7 @@ class ComicInfoFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        url = args.comic.imageUrl.toString()+"/portrait_incredible.jpg"
+        url = args.comic.imageUrl+"/portrait_incredible.jpg"
 
         Glide.with(view?.context).load(url).into(imageView);
 
@@ -70,11 +70,7 @@ class ComicInfoFragment : Fragment() {
             agregarCarrito()
         }
 
-        // Boton para ver carrito
-        carrito.setOnClickListener{
-            view?.findNavController()?.navigate(R.id.cartFragment)
 
-        }
 
     }
 
@@ -92,10 +88,11 @@ class ComicInfoFragment : Fragment() {
             val usuario = Firebase.auth.currentUser
             reference = database.getReference("comicss/${usuario.uid}")
             val id = reference.push().key
+            Log.i("Image2", args.comic.imageUrl.toString()+"/portrait_incredible.jpg")
             val comic = Comic(
                 title.toString(),
                 description.toString(),
-                url,
+                url
             )
             reference.child(id!!).setValue(comic)
             toast.show()
