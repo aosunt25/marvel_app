@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="8dp"
     app:cardElevation="8dp"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    android:background="@color/black">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -32,7 +33,7 @@
             android:fontFamily="sans-serif"
             android:textColor="#212121"
             android:layout_marginStart="10dp"
-            android:text="nombre del pokemon"
+            android:text="titulo"
             android:layout_marginLeft="10dp" />
         <TextView
             android:id="@+id/txdescription"
@@ -44,7 +45,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:textSize="18sp"
             android:fontFamily="sans-serif"
-            android:text="tipo pokemon"
+            android:text="descripcion"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

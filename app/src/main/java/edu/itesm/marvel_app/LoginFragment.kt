@@ -73,7 +73,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     bind.password.text.toString()
                 ).addOnCompleteListener{
                     if(it.isSuccessful){
-                        Toast.makeText(getActivity(),"Bienvenido Maestro Pokemon!",
+                        Toast.makeText(getActivity(),"Bienvenido!",
                             Toast.LENGTH_LONG).show()
                             view?.findNavController()?.navigate(R.id.action_loginFragment2_to_startFragment2)
 

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ComicInfoFragment">
+    tools:context=".ComicInfoFragment"
+    android:background="@drawable/bggradient">
 
     <ImageView
         android:id="@+id/imageView"
@@ -41,30 +42,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titulo" />
 
-    <Button
+
+    <android.widget.Button
         android:id="@+id/agregarCarrito"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
+        android:layout_width="157dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="44dp"
+        android:background="@drawable/custom_buttons"
         android:text="Agregar"
+        android:textColor="#F4F4F4"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.226"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descripcion"
-        app:layout_constraintVertical_bias="0.764" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.914" />
 
     <android.widget.Button
         android:id="@+id/carrito"
-        android:layout_width="105dp"
-        android:layout_height="97dp"
-        android:background="@drawable/custom_button_round"
+        android:layout_width="157dp"
+        android:layout_height="63dp"
+        android:background="@drawable/custom_buttons"
         android:text="Carrito"
-        android:textColor="#00ffff"
+        android:textColor="#F4F4F4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.698"
+        app:layout_constraintStart_toEndOf="@+id/agregarCarrito"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.914" />
 
