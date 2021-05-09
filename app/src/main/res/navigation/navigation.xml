@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_startFragment2_to_comicListFragment3"
             app:destination="@id/comicListFragment3" />
+        <action
+            android:id="@+id/action_startFragment2_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/comicListFragment3"

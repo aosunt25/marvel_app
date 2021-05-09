@@ -31,10 +31,9 @@ class StartFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         button.setOnClickListener{
             view?.findNavController()?.navigate(R.id.action_startFragment2_to_comicListFragment3)
-
-
-
-
+        }
+        cartButton.setOnClickListener{
+            view?.findNavController()?.navigate(R.id.action_startFragment2_to_cartFragment)
         }
 
     }

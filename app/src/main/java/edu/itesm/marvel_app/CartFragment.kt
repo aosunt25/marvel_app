@@ -66,8 +66,10 @@ class CartFragment : Fragment() {
         val usuario = Firebase.auth.currentUser
         val referencia = FirebaseDatabase.getInstance().getReference("comicss/${usuario.uid}/${comic.id}")
             referencia.removeValue().addOnSuccessListener {
+                cargaDatos()
                 Toast.makeText(getContext(), "Borrado del carrito", Toast.LENGTH_SHORT).show()
             }
+
     }
 
     fun cargaDatos() {
