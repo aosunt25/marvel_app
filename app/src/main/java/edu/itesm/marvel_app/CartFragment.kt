@@ -89,7 +89,6 @@ class CartFragment : Fragment() {
 
                             var description = comic.child("description").value.toString()
                             var imageUrl = comic.child("imageUrl").value.toString()
-
                             val newComic =
                                 Comic(id ,title, description, "$imageUrl")
                             Log.i("value", newComic.toString())
