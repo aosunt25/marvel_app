@@ -98,6 +98,7 @@ class ComicListFragment : Fragment() {
                          val results = data.getJSONArray("results")
                          for (i in 0 until results.length()) {
                              val comic = results.getJSONObject(i)
+                             val id = comic.getString("id")
                              val title = comic.getString("title")
                              val description = comic.getString("description")
                              val imageArr = comic.getJSONArray("images")
@@ -107,7 +108,7 @@ class ComicListFragment : Fragment() {
                                  path = image.getString("path")
                                  //Log.i("image", path.toString())
                              }
-                             val newComic = Comic(title, description, path)
+                             val newComic = Comic(id, title, description, path)
                              comicList.add(newComic)
                              //Log.i("name", comicList.toString())
                          }

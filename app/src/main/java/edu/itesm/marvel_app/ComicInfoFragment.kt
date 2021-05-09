@@ -92,6 +92,7 @@ class ComicInfoFragment : Fragment() {
             val id = reference.push().key
             Log.i("Image2", args.comic.imageUrl.toString()+"/portrait_incredible.jpg")
             val comic = Comic(
+                id.toString(),
                 title.toString(),
                 description.toString(),
                 url
